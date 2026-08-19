@@ -112,8 +112,8 @@ const Hero = styled(Scene)`
 
 const HeroGrid = styled.div`
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 280px;
-  gap: 8vw;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
+  gap: 5vw;
   align-items: end;
   @media (max-width: 700px) { display: block; }
 `;
@@ -131,29 +131,13 @@ const HeroTitle = styled.h1`
 
 const Proof = styled.div`
   position: relative;
-  min-height: 340px;
-  margin-bottom: -30px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.4) 0 12%, transparent 12% 100%),
-    repeating-linear-gradient(0deg, rgba(45,23,25,.08) 0 1px, transparent 1px 5px),
-    #c88782;
+  min-height: 500px;
+  margin: 0 -8vw -70px 0;
+  overflow: hidden;
+  background: #f2ede5;
   border: 1px solid rgba(45,23,25,.3);
   transform: rotate(3deg);
-  &::before {
-    content: "KUNDAROMA / PROOF";
-    position: absolute;
-    top: 18px; left: 18px;
-    font: 500 0.63rem ui-monospace, monospace;
-    letter-spacing: .12em;
-  }
-  &::after {
-    content: "real post\\A source image pending";
-    white-space: pre;
-    position: absolute;
-    left: 18px; bottom: 18px;
-    font: 400 0.7rem/1.5 ui-monospace, monospace;
-  }
-  @media (max-width: 700px) { min-height: 230px; max-width: 290px; margin: 48px 20px 0 auto; }
+  @media (max-width: 700px) { min-height: 370px; max-width: 290px; margin: 48px 20px 0 auto; }
 `;
 
 const HeroArtwork = styled(Image)`
@@ -185,6 +169,10 @@ const OceanOverlay = styled.div`
   margin: auto;
   pointer-events: none;
   h2 { max-width: 500px; margin: 0; font: 400 clamp(4rem, 10vw, 10rem)/.8 Georgia, serif; letter-spacing: -.08em; }
+  @media (max-width: 700px) {
+    display: block;
+    h2 { margin-top: 34vh; }
+  }
 `;
 
 const HeroNote = styled.div`
@@ -218,7 +206,9 @@ const Feature = styled.div`
 `;
 
 const FeatureVisual = styled.div`
+  position: relative;
   min-height: 570px;
+  overflow: hidden;
   padding: 30px;
   display: flex;
   align-items: end;
@@ -229,6 +219,10 @@ const FeatureVisual = styled.div`
 `;
 
 const VisualLabel = styled.div`
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+  background: rgba(36, 31, 26, .78);
   max-width: 220px;
   font: 500 .7rem/1.5 ui-monospace, monospace;
   letter-spacing: .08em;
