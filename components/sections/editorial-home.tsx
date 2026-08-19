@@ -5,7 +5,7 @@ import Image from "next/image";
 import styled, { css } from "styled-components";
 import { ArrowUpRight, Mail, MoveDown } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { contactContent } from "@/content/contact";
 import { experienceEntries } from "@/content/experience";
 import { featuredCaseStudies, condensedWork } from "@/content/featured-work";
@@ -687,25 +687,50 @@ const CreditsList = styled.dl`
   margin: 0;
 `;
 
-const Contact = styled(Scene)`
+const Contact = styled(motion.section)`
+  position: relative;
   min-height: 650px;
   display: flex;
   align-items: end;
-  background: #241f1a;
   color: #f7f4ef;
   h2 { max-width: 9ch; margin: 0 0 55px; font: 400 clamp(4.2rem, 11vw, 11rem)/.76 Georgia, serif; letter-spacing: -.1em; text-wrap: balance; }
   a { color: inherit; }
 `;
 
+const ContactContent = styled.div`
+  position: relative;
+  z-index: 1;
+`;
+
+const ContactEyebrow = styled(Eyebrow)`
+  color: inherit;
+  opacity: .62;
+`;
+
 export function EditorialHome() {
   const [activeArchive, setActiveArchive] = useState(0);
   const prefersReducedMotion = useReducedMotion();
+  const contactRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll();
   const titleY = useTransform(scrollYProgress, [0, 0.24], [0, -18]);
   const artworkY = useTransform(scrollYProgress, [0, 0.24], [0, 28]);
   const noteY = useTransform(scrollYProgress, [0, 0.18], [16, 0]);
+  const kundaromaScale = useTransform(scrollYProgress, [0.12, 0.3], [.94, 1]);
+  const kundaromaTypeY = useTransform(scrollYProgress, [0.12, 0.3], [34, 0]);
+  const oceanScale = useTransform(scrollYProgress, [0.25, 0.43], [1.06, 1]);
+  const oceanOverlayY = useTransform(scrollYProgress, [0.25, 0.43], [24, 0]);
   const velouraY = useTransform(scrollYProgress, [0.42, 0.72], [34, 0]);
   const velouraScale = useTransform(scrollYProgress, [0.42, 0.72], [.97, 1]);
+  const contactProgress = useScroll({
+    target: contactRef,
+    offset: ["start end", "start start"],
+  }).scrollYProgress;
+  const contactBackground = useTransform(contactProgress, [0, 0.72], ["#f7f4ef", "#241f1a"]);
+  const contactColor = useTransform(contactProgress, [0, 0.72], ["#241f1a", "#f7f4ef"]);
+  const reveal = prefersReducedMotion
+    ? { initial: false }
+    : { initial: { opacity: 0, y: 28 }, whileInView: { opacity: 1, y: 0 } };
+  const revealViewport = { once: true, amount: 0.2 };
 
   return (
     <Page>
@@ -723,7 +748,12 @@ export function EditorialHome() {
               <Eyebrow>01 / Opening — Meghana Padmavathi</Eyebrow>
               <HeroTitle><span>I wasn&apos;t hired.</span><span>She posted it anyway.</span></HeroTitle>
             </motion.div>
-            <motion.div style={prefersReducedMotion ? undefined : { y: artworkY }}>
+            <motion.div
+              style={prefersReducedMotion ? undefined : { y: artworkY, scale: kundaromaScale }}
+              initial={prefersReducedMotion ? false : { opacity: 0, scale: .9, rotate: -2 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: .8, delay: .12, ease: [.16, 1, .3, 1] }}
+            >
               <Proof>
                 <HeroArtwork
                   src="/kundaroma/kadal-editorial.jpeg"
@@ -761,6 +791,7 @@ export function EditorialHome() {
         <Inner>
           <Eyebrow>03 / Feature story — Real client</Eyebrow>
           <Feature>
+            <motion.div {...reveal} viewport={revealViewport} style={prefersReducedMotion ? undefined : { scale: kundaromaScale }}>
             <FeatureVisual>
               <HeroArtwork
                 src="/kundaroma/kadal-editorial.jpeg"
@@ -770,11 +801,14 @@ export function EditorialHome() {
               />
               <VisualLabel>01<br />Kundaroma<br /><br />Unsolicited design<br />posted by the brand</VisualLabel>
             </FeatureVisual>
+            </motion.div>
+            <motion.div {...reveal} viewport={{ ...revealViewport, amount: 0.35 }} style={prefersReducedMotion ? undefined : { y: kundaromaTypeY }}>
             <FeatureCopy>
               <h2>{featuredCaseStudies[0]?.title}</h2>
               <p>{featuredCaseStudies[0]?.teaser}</p>
               <ArrowLink href="/work/kundaroma">Read the story <ArrowUpRight size={16} /></ArrowLink>
             </FeatureCopy>
+            </motion.div>
           </Feature>
           <StoryGrid>
             {["No brief.", "Send it anyway.", "Make it useful.", "They posted it."].map((title, index) => (
@@ -785,25 +819,32 @@ export function EditorialHome() {
       </Scene>
 
       <OceanScene aria-label="Kundaroma ocean creative">
-        <Image
-          src="/kundaroma/kadal-ocean.jpeg"
-          alt="Kundaroma Kadal fragrance creative framed over turquoise ocean water"
-          width={900}
-          height={1200}
-        />
+        <motion.div style={prefersReducedMotion ? undefined : { scale: oceanScale, y: oceanOverlayY }}>
+          <Image
+            src="/kundaroma/kadal-ocean.jpeg"
+            alt="Kundaroma Kadal fragrance creative framed over turquoise ocean water"
+            width={900}
+            height={1200}
+          />
+        </motion.div>
+        <motion.div {...reveal} viewport={revealViewport}>
         <OceanOverlay>
           <Eyebrow style={{ color: "#123d43" }}>04 / The work</Eyebrow>
           <h2>As deep as the ocean.</h2>
         </OceanOverlay>
+        </motion.div>
       </OceanScene>
 
       <VelouraScene>
         <Inner>
+          <motion.div {...reveal} viewport={revealViewport}>
           <VelouraTopline>
             <Eyebrow style={{ color: "#b9c9b7", margin: 0 }}>04 / Brand world — Veloura</Eyebrow>
             <ConceptFlag>Concept — Not launched</ConceptFlag>
           </VelouraTopline>
+          </motion.div>
           <motion.div style={prefersReducedMotion ? undefined : { y: velouraY, scale: velouraScale }}>
+            <motion.div {...reveal} viewport={{ ...revealViewport, amount: 0.3 }}>
             <VelouraIntro>
               <VelouraMark>VELOURA</VelouraMark>
               <ClaimNote>Luxury haircare / self-initiated campaign direction / 2026</ClaimNote>
@@ -812,6 +853,8 @@ export function EditorialHome() {
               <VelouraClaim>Confidence under pressure.</VelouraClaim>
               <ClaimNote>Real hair exposed outdoors for five days. The claim becomes the test.</ClaimNote>
             </VelouraIntro>
+            </motion.div>
+            <motion.div {...reveal} viewport={{ ...revealViewport, amount: 0.2 }}>
             <ExposureField>
               <ExposureHeading>02 / The mechanic — exposure study</ExposureHeading>
               <DayField aria-label="Five-day outdoor exposure study">
@@ -819,10 +862,13 @@ export function EditorialHome() {
               </DayField>
               <QRDevice aria-label="QR code campaign mechanic, concept device" />
             </ExposureField>
+            </motion.div>
+            <motion.div {...reveal} viewport={{ ...revealViewport, amount: 0.3 }}>
             <CampaignFooter>
               <Body style={{ color: "rgba(233,224,209,.72)" }}>A billboard mechanic designed to make the product claim public, measurable, and impossible to ignore. The QR code invites the audience into the test.</Body>
               <ArrowLink href="/work/veloura" style={{ color: "#e9e0d1" }}>Open the concept <ArrowUpRight size={16} /></ArrowLink>
             </CampaignFooter>
+            </motion.div>
           </motion.div>
         </Inner>
       </VelouraScene>
@@ -830,7 +876,7 @@ export function EditorialHome() {
       <Scene>
         <Inner>
           <Eyebrow>05 / Supporting creative work</Eyebrow>
-          <Huge>An archive of trying things on purpose.</Huge>
+          <Huge $gesture="archive">An archive of trying things on purpose.</Huge>
           <Archive>
             <ArchivePreview aria-hidden="true">
               {[condensedWork, { title: "The Naga Kitchen", tag: "Concept", description: "Unsolicited brand and social media design direction." }, { title: "Golden Gym", tag: "Concept", description: "A local business outreach concept." }].map((item, index) => (
@@ -867,9 +913,9 @@ export function EditorialHome() {
         <Inner>
           <Eyebrow>06 / Technical notebook</Eyebrow>
           <Notebook>
-            <div><Huge>Proof of range.</Huge><Body style={{ marginTop: 34, color: "rgba(247,244,239,.7)" }}>The technical work stays in the notebook: visual, annotated, and useful — never a separate developer persona.</Body></div>
+            <div><Huge $gesture="range">Proof of range.</Huge><Body style={{ marginTop: 34, color: "rgba(247,244,239,.7)" }}>The technical work stays in the notebook: visual, annotated, and useful — never a separate developer persona.</Body></div>
             <div>
-              {technicalProjects.map((project, index) => <TechItem key={project.title}><Index>0{index + 1} / {project.meta}</Index><NotebookVisual $alt={index === 1} /><h3>{project.title}</h3><p>{project.description}</p><a href={project.linkHref} target="_blank" rel="noreferrer">{project.linkLabel} <ArrowUpRight size={16} /></a></TechItem>)}
+              {technicalProjects.map((project, index) => <TechItem key={project.title}><Index>0{index + 1} / {project.meta}</Index><motion.div {...reveal} viewport={{ ...revealViewport, amount: 0.35 }}><NotebookVisual $alt={index === 1} /></motion.div><h3>{project.title}</h3><p>{project.description}</p><a href={project.linkHref} target="_blank" rel="noreferrer">{project.linkLabel} <ArrowUpRight size={16} /></a></TechItem>)}
             </div>
           </Notebook>
         </Inner>
@@ -896,12 +942,20 @@ export function EditorialHome() {
         </Inner>
       </Scene>
 
-      <Contact id="contact">
-        <Inner>
-          <Eyebrow style={{ color: "rgba(247,244,239,.6)" }}>09 / Open line</Eyebrow>
+       <Contact
+         ref={contactRef}
+         id="contact"
+         style={prefersReducedMotion
+           ? { backgroundColor: "#241f1a" }
+           : { backgroundColor: contactBackground, color: contactColor }}
+       >
+         <ContactContent>
+         <Inner>
+           <ContactEyebrow>09 / Open line</ContactEyebrow>
           <h2>{contactContent.heading}.<br />Let&apos;s make it matter.</h2>
           <ArrowLink href={contactContent.ctaHref}>Email me <Mail size={16} /></ArrowLink>
         </Inner>
+         </ContactContent>
       </Contact>
     </Page>
   );
