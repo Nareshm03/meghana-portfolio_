@@ -1,0 +1,541 @@
+IMPORTANT: I have provided an existing Claude-generated Next.js portfolio codebase.
+
+FIRST inspect the entire repository.
+
+Do NOT assume the existing implementation represents the final design.
+
+The repository is a PARTIAL MIGRATION and PARTIAL IMPLEMENTATION.
+
+The README explicitly states that only the Hero is currently migrated to styled-components, while Featured Work, Also Built, Writing, Experience, Skills, and Contact are still using old Tailwind classes.
+
+The existing visual implementation is therefore NOT the design source of truth.
+
+==================================================
+SOURCE OF TRUTH PRIORITY
+==================================================
+
+Use this priority order:
+
+1. My latest visual references
+2. The Creative Bible
+3. The Composition Reset
+4. The Complete Design Blueprint
+5. The approved content / case-study strategy
+6. Existing repository architecture
+7. Existing components
+
+The existing components are implementation material, NOT visual authority.
+
+==================================================
+CURRENT PROBLEM
+==================================================
+
+The current repository contains:
+
+• generic card structures
+• Tailwind-era layout classes
+• repeated section patterns
+• SaaS-like project cards
+• uniform spacing
+• standard portfolio hierarchy
+
+These are rejected.
+
+Do NOT preserve them just because they already exist.
+
+==================================================
+WHAT TO KEEP
+==================================================
+
+Keep where useful:
+
+• Next.js 15
+• React 19
+• TypeScript
+• styled-components 6
+• Framer Motion
+• Lenis
+• Lucide
+• next/image
+• current content files
+• current case-study data
+• useful accessibility logic
+• useful theme/token infrastructure
+• useful routing
+• current asset handling
+
+Do not throw away working architecture without reason.
+
+==================================================
+WHAT TO REBUILD
+==================================================
+
+Rebuild the visual experience from scratch.
+
+This is NOT a normal portfolio website.
+
+It is an interactive editorial / creative portfolio.
+
+Think:
+
+• creative presentation
+• digital magazine
+• branding case-study book
+• art-directed portfolio
+• interactive creative journal
+
+NOT:
+
+• developer portfolio
+• SaaS landing page
+• dashboard
+• generic Framer template
+• card-grid portfolio
+
+==================================================
+REFERENCE EXPERIENCE
+==================================================
+
+The supplied reference screenshots show the desired PRESENTATION LANGUAGE:
+
+Every chapter can have a completely different composition.
+
+Examples of useful principles from the references:
+
+• giant typography
+• mixed typography scales
+• large imagery
+• image collages
+• overlapping visual elements
+• annotations
+• circles
+• arrows
+• editorial labels
+• presentation-like slides
+• changing visual moods
+• dark and light chapters
+• highly visual pages
+• large-scale typography
+• visual storytelling
+• strong art direction
+
+Do NOT copy the reference portfolio.
+
+Use those principles to create an original Meghana identity.
+
+==================================================
+MEGHANA'S VISUAL IDENTITY
+==================================================
+
+Primary identity:
+
+Brand Strategy
+Creative Strategy
+Marketing
+Campaign Design
+Copywriting
+Visual Storytelling
+Product Marketing
+
+Secondary differentiator:
+
+AI / ML
+Technical projects
+
+The aesthetic must communicate the creative identity first.
+
+Technology should appear as evidence of range, not as the visual language.
+
+==================================================
+REBUILD THE HOMEPAGE
+==================================================
+
+Do NOT simply render:
+
+Hero
+Cards
+Cards
+Cards
+Experience grid
+Skills list
+Contact
+
+Instead create a sequence of visually distinct scenes.
+
+Suggested scenes:
+
+01 — Opening
+02 — Personal positioning
+03 — Kundaroma feature
+04 — Kundaroma story
+05 — Veloura
+06 — Supporting creative work
+07 — Technical work
+08 — Writing
+09 — Experience
+10 — About
+11 — Contact
+12 — Footer
+
+Each scene should have a deliberately different composition.
+
+==================================================
+HERO
+==================================================
+
+Use the approved copy:
+
+"I wasn't hired. She posted it anyway."
+
+Subheadline:
+
+"A second-year AI/ML student who also designs brand strategy and campaigns."
+
+CTA:
+
+"Email me →"
+
+The Hero should NOT look like:
+
+text left + image right.
+
+Keep the approved idea where the proof image interrupts the typography.
+
+But execute it as a real editorial composition:
+
+• oversized typography
+• image intrusion
+• visual layering
+• strong whitespace
+• subtle scroll movement
+• editorial labels
+• intentional asymmetry
+
+The static version must already look excellent before animation.
+
+==================================================
+KUNDAROMA
+==================================================
+
+This is the strongest proof point.
+
+It must be visually dominant.
+
+DO NOT use CaseStudyCard.
+
+DO NOT use a rounded project box.
+
+DO NOT use a normal portfolio card.
+
+Create a feature-story composition.
+
+Use:
+
+• large real proof image
+• oversized typography
+• folio number
+• pull quote
+• image bleed
+• factual caption
+• whitespace
+• scroll storytelling
+
+==================================================
+KUNDAROMA STORY
+==================================================
+
+Do NOT create four cards for:
+
+Problem
+Solution
+Result
+Reflection
+
+Instead create four visual beats.
+
+Each beat should feel like a page/spread of the same story.
+
+Use:
+
+• pinned typography where useful
+• large images
+• scroll-triggered transitions
+• image reveals
+• scale changes
+• typography movement
+• visual pauses
+
+==================================================
+VELOURA
+==================================================
+
+Create a distinct campaign world.
+
+Think luxury beauty / fashion campaign.
+
+This is conceptual.
+
+Display clearly:
+
+CONCEPT — NOT LAUNCHED
+
+Do not visually imply real-world publication or campaign results.
+
+==================================================
+SUPPORTING CREATIVE WORK
+==================================================
+
+Untamed Streetwear and other marketing work should become an editorial archive.
+
+No generic cards.
+
+Use:
+
+• visual thumbnails
+• large title
+• editorial index
+• captions
+• varied image scales
+• asymmetrical placement
+
+==================================================
+TECHNICAL WORK
+==================================================
+
+CampusHub and AI Circuit Analyzer should feel like an embedded engineering notebook.
+
+NOT a developer portfolio.
+
+No two-card SaaS grid.
+
+Instead create:
+
+• alternating layouts
+• technical annotations
+• screenshots
+• notebook-like information hierarchy
+• subtle mono typography only for technical metadata
+• project visuals as primary material
+
+==================================================
+WRITING
+==================================================
+
+Do not build a writing card.
+
+Make one editorial pull-quote moment.
+
+Large quote.
+
+Tiny metadata.
+
+Large whitespace.
+
+==================================================
+EXPERIENCE
+==================================================
+
+No timeline.
+
+No grid.
+
+No cards.
+
+Create a magazine masthead / creative credits page.
+
+==================================================
+SKILLS
+==================================================
+
+Do not use pills.
+
+Do not use chips.
+
+Do not use icons.
+
+Do not create a skill cloud.
+
+Make it read like a restrained colophon / credits block.
+
+==================================================
+ABOUT
+==================================================
+
+Personal and visually intimate.
+
+When a real photo is available:
+
+• use it prominently but not hero-level
+• layer typography around it
+• include one memorable specific personal detail
+
+Do not invent that detail.
+
+==================================================
+CONTACT
+==================================================
+
+End with visual confidence.
+
+Large CTA typography.
+
+Very little supporting text.
+
+No generic contact card.
+
+==================================================
+FOOTER
+==================================================
+
+Quiet.
+
+Minimal.
+
+Book-colophon feeling.
+
+==================================================
+MOTION
+==================================================
+
+Use animation where it adds meaning.
+
+Use the existing libraries when appropriate.
+
+Preferred techniques:
+
+• GSAP ScrollTrigger
+• Framer Motion
+• Lenis
+
+Do not add libraries unnecessarily.
+
+Possible effects:
+
+• image masks
+• clip-path reveals
+• text reveals
+• scroll-linked scale
+• pinned story sections
+• subtle parallax
+• image movement
+• section transitions
+• editorial scene changes
+• hover image previews
+
+Avoid:
+
+• bouncing
+• spinning
+• particle backgrounds
+• flashy cursor effects
+• scroll-jacking
+• excessive 3D
+• animation that harms reading
+
+==================================================
+RESPONSIVE
+==================================================
+
+Do NOT shrink desktop into mobile.
+
+Design each scene intentionally for:
+
+• 1440
+• 1280
+• 1024
+• 768
+• 390
+• 375
+
+If an effect does not work on mobile, redesign that scene for mobile rather than simply removing content.
+
+==================================================
+IMPLEMENTATION RULE
+==================================================
+
+Use reusable CODE architecture.
+
+Do NOT use reusable VISUAL templates everywhere.
+
+For example:
+
+GOOD:
+
+HeroScene
+KundaromaFeatureScene
+VelouraCampaignScene
+TechnicalNotebookScene
+ExperienceMastheadScene
+
+BAD:
+
+GenericSection
+GenericCard
+GenericCard
+GenericCard
+GenericCard
+
+Internal code should be reusable.
+
+Visual compositions should remain section-specific.
+
+==================================================
+WORKFLOW
+==================================================
+
+STEP 1
+Inspect the entire repository.
+
+STEP 2
+Inspect every current component and identify what can be reused.
+
+STEP 3
+Inspect all available assets.
+
+STEP 4
+Remove old Tailwind dependencies/usages from active components.
+
+STEP 5
+Finish the styled-components migration where appropriate.
+
+STEP 6
+Rebuild the homepage scene-by-scene.
+
+STEP 7
+Run the application.
+
+STEP 8
+Use the browser preview.
+
+STEP 9
+Visually inspect the actual rendered page.
+
+STEP 10
+Fix anything that looks generic, repetitive, empty, or template-like.
+
+STEP 11
+Continue with the next scene.
+
+Do not claim success from code alone.
+
+The rendered browser output is the source of truth for visual QA.
+
+==================================================
+CRITICAL
+==================================================
+
+Do NOT give me a design document.
+
+Do NOT give me a plan.
+
+Do NOT tell me to create Figma files.
+
+Do NOT explain what you would do.
+
+Make the changes in the repository.
+
+Run the application.
+
+Inspect the preview.
+
+Iterate until the visual result actually matches the intended editorial / creative portfolio direction.

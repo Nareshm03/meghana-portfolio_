@@ -4,9 +4,9 @@ import type { HeroContent } from "@/types/hero";
 // per this project's own rule, wording changes require identifying a
 // factual problem first, not a stylistic preference.
 export const heroContent: HeroContent = {
-  headlineLines: ["She posted my design", "without being asked."],
+  headlineLines: ["I wasn't hired.", "She posted it anyway."],
   subheadline:
-    "Second-year AI/ML student. Brand strategy, creative work, and technical builds.",
+    "A second-year AI/ML student who also designs brand strategy and campaigns.",
   proofCaption:
     "Kundaroma — my unsolicited design, published on the brand's Instagram.",
   ctaLabel: "Email me",
