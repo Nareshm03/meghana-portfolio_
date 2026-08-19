@@ -20,6 +20,10 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  a {
+    color: inherit;
+  }
+
   /* One focus treatment, sitewide — Design System Section 11. Never suppressed. */
   :focus-visible {
     outline: 2px solid ${({ theme }) => theme.colors.accent};
