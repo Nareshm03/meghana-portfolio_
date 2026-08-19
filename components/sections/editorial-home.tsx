@@ -11,7 +11,7 @@ import { technicalProjects } from "@/content/technical-projects";
 
 const Page = styled.main`
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.background};
+  background: #f7f4ef;
 `;
 
 const Nav = styled.nav`
@@ -24,8 +24,8 @@ const Nav = styled.nav`
   max-width: 1360px;
   margin: auto;
   padding: 28px 5vw;
-  color: ${({ theme }) => theme.colors.textPrimary};
-  font: 500 0.72rem/1 ${({ theme }) => theme.fonts.mono};
+  color: #241f1a;
+  font: 500 0.72rem/1 ui-monospace, monospace;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 `;
@@ -33,7 +33,7 @@ const Nav = styled.nav`
 const Mark = styled(Link)`
   color: inherit;
   text-decoration: none;
-  font-family: ${({ theme }) => theme.fonts.display};
+  font-family: Georgia, serif;
   font-size: 1.35rem;
   letter-spacing: -0.04em;
   text-transform: none;
@@ -70,8 +70,8 @@ const Inner = styled.div`
 
 const Eyebrow = styled.p`
   margin: 0 0 24px;
-  color: ${({ theme }) => theme.colors.textSecondary};
-  font: 500 0.68rem/1.4 ${({ theme }) => theme.fonts.mono};
+  color: #6e6459;
+  font: 500 0.68rem/1.4 ui-monospace, monospace;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 `;
@@ -79,14 +79,14 @@ const Eyebrow = styled.p`
 const Huge = styled.h2`
   max-width: 980px;
   margin: 0;
-  font: 400 clamp(3.2rem, 9vw, 9.5rem)/0.87 ${({ theme }) => theme.fonts.display};
+  font: 400 clamp(3.2rem, 9vw, 9.5rem)/0.87 Georgia, serif;
   letter-spacing: -0.075em;
 `;
 
 const Body = styled.p`
   max-width: 480px;
   margin: 0;
-  color: ${({ theme }) => theme.colors.textSecondary};
+  color: #6e6459;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
   line-height: 1.55;
 `;
@@ -96,7 +96,7 @@ const ArrowLink = styled(Link)`
   align-items: center;
   gap: 9px;
   color: inherit;
-  font: 500 0.72rem/1 ${({ theme }) => theme.fonts.mono};
+  font: 500 0.72rem/1 ui-monospace, monospace;
   letter-spacing: 0.08em;
   text-decoration: none;
   text-transform: uppercase;
@@ -124,7 +124,7 @@ const HeroTitle = styled.h1`
   z-index: 1;
   max-width: 950px;
   margin: 0;
-  font: 400 clamp(4.1rem, 12.4vw, 12rem)/0.78 ${({ theme }) => theme.fonts.display};
+  font: 400 clamp(4.1rem, 12.4vw, 12rem)/0.78 Georgia, serif;
   letter-spacing: -0.09em;
   span { display: block; }
   span:last-child { margin-left: clamp(20px, 10vw, 150px); }
@@ -144,7 +144,7 @@ const Proof = styled.div`
     content: "KUNDAROMA / PROOF";
     position: absolute;
     top: 18px; left: 18px;
-    font: 500 0.63rem ${({ theme }) => theme.fonts.mono};
+    font: 500 0.63rem ui-monospace, monospace;
     letter-spacing: .12em;
   }
   &::after {
@@ -152,7 +152,7 @@ const Proof = styled.div`
     white-space: pre;
     position: absolute;
     left: 18px; bottom: 18px;
-    font: 400 0.7rem/1.5 ${({ theme }) => theme.fonts.mono};
+    font: 400 0.7rem/1.5 ui-monospace, monospace;
   }
   @media (max-width: 700px) { min-height: 230px; max-width: 290px; margin: 48px 20px 0 auto; }
 `;
@@ -166,7 +166,7 @@ const HeroNote = styled.div`
 `;
 
 const Index = styled.span`
-  font: 500 0.68rem ${({ theme }) => theme.fonts.mono};
+  font: 500 0.68rem ui-monospace, monospace;
   letter-spacing: .1em;
   text-transform: uppercase;
 `;
@@ -200,13 +200,13 @@ const FeatureVisual = styled.div`
 
 const VisualLabel = styled.div`
   max-width: 220px;
-  font: 500 .7rem/1.5 ${({ theme }) => theme.fonts.mono};
+  font: 500 .7rem/1.5 ui-monospace, monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
 `;
 
 const FeatureCopy = styled.div`
-  h2 { margin: 0 0 28px; font: 400 clamp(4rem, 9vw, 8.5rem)/.82 ${({ theme }) => theme.fonts.display}; letter-spacing: -.08em; }
+  h2 { margin: 0 0 28px; font: 400 clamp(4rem, 9vw, 8.5rem)/.82 Georgia, serif; letter-spacing: -.08em; }
   p { max-width: 440px; margin: 0 0 36px; font-size: 1.15rem; line-height: 1.55; }
 `;
 
@@ -224,7 +224,7 @@ const Beat = styled.div`
   padding: 22px 16px 20px 0;
   border-right: 1px solid currentColor;
   &:last-child { border-right: 0; }
-  h3 { margin: 45px 0 12px; font: 400 2rem/.95 ${({ theme }) => theme.fonts.display}; letter-spacing: -.05em; }
+  h3 { margin: 45px 0 12px; font: 400 2rem/.95 Georgia, serif; letter-spacing: -.05em; }
   p { margin: 0; font-size: .85rem; line-height: 1.5; opacity: .7; }
   @media (max-width: 800px) { &:nth-child(2) { border-right: 0; } }
 `;
@@ -247,7 +247,7 @@ const CampaignBlock = styled.div`
   color: #59333a;
   border-radius: 50% 50% 0 0;
   transform: rotate(2deg);
-  h3 { max-width: 600px; margin: 40px 0 0; font: 400 clamp(4rem, 8vw, 8rem)/.8 ${({ theme }) => theme.fonts.display}; letter-spacing: -.08em; }
+  h3 { max-width: 600px; margin: 40px 0 0; font: 400 clamp(4rem, 8vw, 8rem)/.8 Georgia, serif; letter-spacing: -.08em; }
 `;
 
 const Archive = styled.div`
@@ -265,8 +265,8 @@ const ArchiveRow = styled.div`
   font-size: .92rem;
   transition: padding 250ms ease;
   &:hover { padding-left: 18px; padding-right: 18px; }
-  strong { font: 400 clamp(1.8rem, 3.5vw, 3.6rem)/.9 ${({ theme }) => theme.fonts.display}; letter-spacing: -.05em; }
-  small { font: 500 .62rem ${({ theme }) => theme.fonts.mono}; text-transform: uppercase; letter-spacing: .08em; }
+  strong { font: 400 clamp(1.8rem, 3.5vw, 3.6rem)/.9 Georgia, serif; letter-spacing: -.05em; }
+  small { font: 500 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
   @media (max-width: 700px) { grid-template-columns: 42px 1fr; small:nth-child(3), small:last-child { grid-column: 2; } }
 `;
 
@@ -281,7 +281,7 @@ const TechItem = styled.article`
   padding-top: 22px;
   border-top: 1px solid rgba(247,244,239,.35);
   & + & { margin-top: 90px; }
-  h3 { margin: 38px 0 18px; font: 400 clamp(2.8rem, 5vw, 5.5rem)/.85 ${({ theme }) => theme.fonts.display}; letter-spacing: -.07em; }
+  h3 { margin: 38px 0 18px; font: 400 clamp(2.8rem, 5vw, 5.5rem)/.85 Georgia, serif; letter-spacing: -.07em; }
   p { max-width: 420px; color: rgba(247,244,239,.7); line-height: 1.55; }
   a { display: inline-flex; margin-top: 22px; color: inherit; }
 `;
@@ -298,10 +298,10 @@ const NotebookVisual = styled.div<{ $alt?: boolean }>`
 const Quote = styled.blockquote`
   max-width: 900px;
   margin: 0;
-  font: 400 clamp(3rem, 7vw, 7.2rem)/.9 ${({ theme }) => theme.fonts.display};
+  font: 400 clamp(3rem, 7vw, 7.2rem)/.9 Georgia, serif;
   letter-spacing: -.075em;
   p { margin: 0; }
-  footer { margin-top: 36px; font: 500 .68rem ${({ theme }) => theme.fonts.mono}; letter-spacing: .1em; text-transform: uppercase; opacity: .65; }
+  footer { margin-top: 36px; font: 500 .68rem ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .65; }
 `;
 
 const Credits = styled.div`
@@ -309,9 +309,9 @@ const Credits = styled.div`
   grid-template-columns: 1fr 1.4fr;
   gap: 10vw;
   @media (max-width: 700px) { display: block; }
-  h2 { margin: 0; font: 400 clamp(3rem, 7vw, 7rem)/.85 ${({ theme }) => theme.fonts.display}; letter-spacing: -.08em; }
+  h2 { margin: 0; font: 400 clamp(3rem, 7vw, 7rem)/.85 Georgia, serif; letter-spacing: -.08em; }
   dl { margin: 0; }
-  dt { margin-top: 20px; font: 500 .65rem ${({ theme }) => theme.fonts.mono}; letter-spacing: .09em; text-transform: uppercase; color: ${({ theme }) => theme.colors.textSecondary}; }
+  dt { margin-top: 20px; font: 500 .65rem ui-monospace, monospace; letter-spacing: .09em; text-transform: uppercase; color: #6e6459; }
   dd { margin: 7px 0 0; font-size: 1.1rem; line-height: 1.5; }
 `;
 
@@ -325,7 +325,7 @@ const Contact = styled(Scene)`
   align-items: end;
   background: #241f1a;
   color: #f7f4ef;
-  h2 { max-width: 900px; margin: 0 0 55px; font: 400 clamp(4.5rem, 12vw, 12rem)/.78 ${({ theme }) => theme.fonts.display}; letter-spacing: -.09em; }
+  h2 { max-width: 900px; margin: 0 0 55px; font: 400 clamp(4.5rem, 12vw, 12rem)/.78 Georgia, serif; letter-spacing: -.09em; }
   a { color: inherit; }
 `;
 
