@@ -1,7 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import styled, { css } from "styled-components";
 import { ArrowUpRight, Mail, MoveDown } from "lucide-react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { contactContent } from "@/content/contact";
 import { experienceEntries } from "@/content/experience";
 import { featuredCaseStudies, condensedWork } from "@/content/featured-work";
@@ -111,33 +114,52 @@ const Hero = styled(Scene)`
 `;
 
 const HeroGrid = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 390px);
-  gap: 5vw;
-  align-items: end;
-  @media (max-width: 700px) { display: block; }
+  position: relative;
+  min-height: min(650px, 68vh);
+  display: flex;
+  align-items: center;
+  @media (max-width: 700px) {
+    min-height: auto;
+    display: block;
+  }
 `;
 
 const HeroTitle = styled.h1`
   position: relative;
-  z-index: 1;
-  max-width: 950px;
+  z-index: 2;
+  max-width: 1100px;
   margin: 0;
-  font: 400 clamp(4.1rem, 12.4vw, 12rem)/0.78 Georgia, serif;
-  letter-spacing: -0.09em;
+  font: 400 clamp(4rem, 11.8vw, 11rem)/0.77 Georgia, serif;
+  letter-spacing: -0.095em;
   span { display: block; }
-  span:last-child { margin-left: clamp(20px, 10vw, 150px); }
+  span:first-child { margin-left: clamp(0px, 3vw, 42px); }
+  span:last-child { margin-left: clamp(34px, 13vw, 180px); }
+  @media (max-width: 700px) {
+    font-size: clamp(3.6rem, 17vw, 6rem);
+    line-height: .8;
+    span:first-child { margin-left: 0; }
+    span:last-child { margin: 10px 0 0 12vw; }
+  }
 `;
 
 const Proof = styled.div`
   position: relative;
-  min-height: 500px;
-  margin: 0 -8vw -70px 0;
+  z-index: 3;
+  width: clamp(190px, 22vw, 310px);
+  height: clamp(390px, 49vw, 560px);
+  margin: 0 0 0 clamp(-145px, -11vw, -30px);
   overflow: hidden;
   background: #f2ede5;
   border: 1px solid rgba(45,23,25,.3);
-  transform: rotate(3deg);
-  @media (max-width: 700px) { min-height: 370px; max-width: 290px; margin: 48px 20px 0 auto; }
+  box-shadow: 14px 18px 0 rgba(36, 31, 26, .08);
+  transform: rotate(2.5deg);
+  transform-origin: 50% 80%;
+  @media (max-width: 700px) {
+    width: min(66vw, 280px);
+    height: min(110vw, 410px);
+    margin: 48px 8vw 0 auto;
+    transform: rotate(2deg);
+  }
 `;
 
 const HeroArtwork = styled(Image)`
@@ -147,6 +169,32 @@ const HeroArtwork = styled(Image)`
   height: 100%;
   object-fit: cover;
   object-position: center;
+`;
+
+const HeroStamp = styled.span`
+  position: absolute;
+  z-index: 4;
+  top: -18px;
+  right: -64px;
+  color: #6e6459;
+  font: 500 .62rem/1 ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  transform: rotate(90deg);
+  transform-origin: left bottom;
+  @media (max-width: 700px) {
+    top: -14px;
+    right: -56px;
+  }
+`;
+
+const HeroRule = styled.div`
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  bottom: 18px;
+  width: 54px;
+  border-top: 1px solid currentColor;
 `;
 
 const OceanScene = styled.section`
@@ -176,10 +224,15 @@ const OceanOverlay = styled.div`
 `;
 
 const HeroNote = styled.div`
+  position: relative;
+  z-index: 5;
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-top: 70px;
+  margin-top: -18px;
+  padding-top: 26px;
+  border-top: 1px solid rgba(36,31,26,.25);
+  gap: 32px;
   @media (max-width: 700px) { display: block; margin-top: 48px; }
 `;
 
@@ -354,6 +407,12 @@ const Contact = styled(Scene)`
 `;
 
 export function EditorialHome() {
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const titleY = useTransform(scrollYProgress, [0, 0.24], [0, -18]);
+  const artworkY = useTransform(scrollYProgress, [0, 0.24], [0, 28]);
+  const noteY = useTransform(scrollYProgress, [0, 0.18], [16, 0]);
+
   return (
     <Page>
       <Nav aria-label="Main navigation">
@@ -365,24 +424,30 @@ export function EditorialHome() {
       <Hero aria-label="Introduction">
         <Inner>
           <HeroGrid>
-            <div>
+            <motion.div style={prefersReducedMotion ? undefined : { y: titleY }}>
               <Eyebrow>01 / Opening — Meghana Padmavathi</Eyebrow>
               <HeroTitle><span>I wasn&apos;t hired.</span><span>She posted it anyway.</span></HeroTitle>
-            </div>
-            <Proof>
-              <HeroArtwork
-                src="/kundaroma/kadal-editorial.jpeg"
-                alt="Kundaroma Kadal fragrance creative with navy perfume bottle and gold vertical typography"
-                width={600}
-                height={900}
-                priority
-              />
-            </Proof>
+            </motion.div>
+            <motion.div style={prefersReducedMotion ? undefined : { y: artworkY }}>
+              <Proof>
+                <HeroArtwork
+                  src="/kundaroma/kadal-editorial.jpeg"
+                  alt="Kundaroma Kadal fragrance creative with navy perfume bottle and gold vertical typography"
+                  width={600}
+                  height={900}
+                  priority
+                />
+                <HeroStamp>Kundaroma / Kadal / 2026</HeroStamp>
+                <HeroRule />
+              </Proof>
+            </motion.div>
           </HeroGrid>
-          <HeroNote>
+          <motion.div style={prefersReducedMotion ? undefined : { y: noteY }}>
+            <HeroNote>
             <Body>A second-year AI/ML student who also designs brand strategy and campaigns.</Body>
             <ArrowLink href={contactContent.ctaHref}>Email me <ArrowUpRight size={16} /></ArrowLink>
-          </HeroNote>
+            </HeroNote>
+          </motion.div>
           <MoveDown size={18} aria-hidden="true" style={{ marginTop: 70 }} />
         </Inner>
       </Hero>

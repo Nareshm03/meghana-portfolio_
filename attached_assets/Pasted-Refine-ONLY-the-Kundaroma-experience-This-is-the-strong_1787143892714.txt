@@ -1,0 +1,123 @@
+Refine ONLY the Kundaroma experience.
+
+This is the strongest real proof in the portfolio.
+
+The current section must evolve from "portfolio project" into "editorial campaign feature."
+
+Use BOTH real Kundaroma assets supplied to the project.
+
+ASSET 01:
+Luxury KADAL creative with navy bottle, flowers, gold typography.
+
+ASSET 02:
+Turquoise ocean KADAL campaign creative with the line:
+
+"Dive into a scent as deep as the ocean."
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DO NOT put these into two cards.
+
+DO NOT place them side by side in a gallery.
+
+DO NOT use a standard project layout.
+
+Create a sequence of visual scenes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCENE 1 — THE CLAIM
+
+Large typography:
+
+"She posted it."
+
+Minimal supporting text.
+
+Large whitespace.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCENE 2 — THE WORK
+
+Asset 01 becomes dominant.
+
+Let the real artwork occupy a large percentage of the viewport.
+
+Possible:
+
+- image bleed
+- oversized crop
+- pinned image
+- subtle scale
+- typography crossing the image
+- tiny editorial caption
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCENE 3 — THE SECOND CAMPAIGN
+
+Transition into Asset 02.
+
+Let the turquoise artwork introduce a completely different visual atmosphere.
+
+Use the image itself as the reason for the section's color field.
+
+Do not simply put turquoise behind the image.
+
+The whole scene should feel like a perfume campaign.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCENE 4 — THE PROOF
+
+Show the actual Instagram context clearly enough to establish:
+
+the work was posted by the brand.
+
+Do not fabricate likes, comments, reach, or results.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SCENE 5 — THE REFLECTION
+
+Quiet.
+
+Large whitespace.
+
+One short reflection.
+
+Then transition toward Veloura.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MOTION
+
+Use ScrollTrigger / Framer Motion only where it improves storytelling:
+
+- image reveal
+- scale
+- crop transition
+- pinned image
+- typography movement
+- color transition
+
+No flashy effects.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IMPORTANT
+
+The actual artwork must remain authentic.
+
+Do not recolor it.
+
+Do not distort it.
+
+Do not add fake branding.
+
+Do not add device mockups.
+
+Do not add fake metrics.
+
+Build directly in the repository.
