@@ -1,0 +1,2 @@
+- [Editorial asset boundary](editorial-asset-boundary.md) — keep proof imagery factual and labeled until approved real assets are available.
+- [Scroll runtime](scroll-runtime.md) — native scrolling is the stable fallback when the imported Lenis wrapper causes browser hook errors.
