@@ -1,0 +1,220 @@
+I have now provided two REAL Kundaroma Instagram creatives created by Meghana.
+
+These are NOT placeholders.
+
+Use them as the primary visual assets for the Kundaroma feature and case study.
+
+Do NOT simply place the two images next to each other inside cards.
+
+Treat them as two separate editorial scenes.
+
+==================================================
+ASSET 01
+==================================================
+
+This is the luxury/editorial KADAL creative.
+
+Visual characteristics:
+
+• white background
+• oversized vertical gold typography
+• dark navy perfume bottle
+• navy/cream flowers
+• luxury fragrance aesthetic
+• strong asymmetry
+• vertical typography
+• gold accent
+
+Use this as the primary Kundaroma visual.
+
+It should receive the strongest visual treatment.
+
+Possible treatment:
+
+• large-scale image
+• image extending beyond normal container boundaries
+• typography interacting with the image
+• subtle scale tied to scroll
+• pinned image while supporting text moves
+• factual caption
+• elegant image reveal
+
+Do NOT put it inside a generic rounded card.
+
+==================================================
+ASSET 02
+==================================================
+
+This is the ocean/tropical KADAL creative.
+
+Visual characteristics:
+
+• turquoise water
+• tropical environment
+• product centered inside an editorial white frame
+• handwritten/script headline
+• Instagram presentation
+• lighter, more campaign/social-media feeling
+
+Use this as the SECOND Kundaroma visual.
+
+It should deliberately have a different composition from Asset 01.
+
+==================================================
+THE STORY
+==================================================
+
+Build the Kundaroma section as a visual sequence:
+
+SCENE 01
+"She posted it."
+
+Large typography.
+
+Asset 01 dominates the composition.
+
+Minimal supporting copy.
+
+Large whitespace.
+
+------------
+
+SCENE 02
+"An unsolicited design."
+
+Introduce the context.
+
+Use Asset 01 in a different crop/position.
+
+Do NOT duplicate the exact same composition.
+
+------------
+
+SCENE 03
+"The work."
+
+Asset 02 becomes the visual focus.
+
+Let the turquoise environment change the visual atmosphere of the page.
+
+Use the existing image colors as the visual transition.
+
+------------
+
+SCENE 04
+"The proof."
+
+Show the actual Instagram context.
+
+Keep the fact clear:
+
+Kundaroma published the design on its own Instagram.
+
+------------
+
+SCENE 05
+Reflection.
+
+Very little text.
+
+Large whitespace.
+
+Then transition to Veloura.
+
+==================================================
+IMPORTANT
+==================================================
+
+These are REAL assets.
+
+Preserve their authenticity.
+
+Do not:
+
+• recolor them
+• add fake statistics
+• add fake engagement metrics
+• add fake client quotes
+• distort the work
+• add device mockups around them
+• put them into generic cards
+• alter the actual creative
+
+You may crop them carefully for layout, but do not destroy the composition.
+
+==================================================
+VISUAL PRINCIPLE
+==================================================
+
+The website should adapt to the artwork.
+
+Do NOT force the artwork into the website's existing component dimensions.
+
+If Asset 01 wants to be tall:
+
+let it be tall.
+
+If Asset 02 wants a wide presentation:
+
+let it breathe.
+
+The IMAGE determines the composition.
+
+The component does NOT determine the image.
+
+==================================================
+MOTION
+==================================================
+
+Use restrained editorial motion:
+
+Asset 01:
+subtle reveal + scale
+
+Asset 02:
+slow image movement / crop transition
+
+Typography:
+small staggered reveal
+
+Scene transitions:
+soft image/colour transition
+
+No flashy animation.
+
+==================================================
+MOBILE
+==================================================
+
+Do NOT simply shrink the desktop composition.
+
+Recompose each scene specifically for mobile.
+
+The actual artwork must remain readable.
+
+Do not crop important product details or typography.
+
+==================================================
+QA
+==================================================
+
+After implementing:
+
+Open the website in the browser.
+
+Check:
+
+1440px
+1280px
+1024px
+768px
+390px
+375px
+
+The Kundaroma story should feel like a premium fragrance campaign / editorial spread embedded inside Meghana's portfolio.
+
+It should NOT feel like:
+
+"two screenshots in a portfolio section."
+
+Build it directly in the repository.
