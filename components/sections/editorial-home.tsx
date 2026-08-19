@@ -124,6 +124,18 @@ const HeroGrid = styled.div`
   }
 `;
 
+const HeroEdition = styled.span`
+  position: absolute;
+  top: -54px;
+  right: 5vw;
+  z-index: 0;
+  color: rgba(36,31,26,.07);
+  font: 400 clamp(13rem, 25vw, 25rem)/.7 Georgia, serif;
+  letter-spacing: -.12em;
+  pointer-events: none;
+  user-select: none;
+`;
+
 const HeroTitle = styled.h1`
   position: relative;
   z-index: 2;
@@ -154,6 +166,14 @@ const Proof = styled.div`
   box-shadow: 14px 18px 0 rgba(36, 31, 26, .08);
   transform: rotate(2.5deg);
   transform-origin: 50% 80%;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    z-index: 2;
+    border: 1px solid rgba(247,244,239,.62);
+    pointer-events: none;
+  }
   @media (max-width: 700px) {
     width: min(66vw, 280px);
     height: min(110vw, 410px);
@@ -195,6 +215,18 @@ const HeroRule = styled.div`
   bottom: 18px;
   width: 54px;
   border-top: 1px solid currentColor;
+`;
+
+const HeroCaption = styled.span`
+  position: absolute;
+  z-index: 4;
+  bottom: -31px;
+  left: 7px;
+  color: #6e6459;
+  font: 500 .58rem/1.2 ui-monospace, monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
 `;
 
 const OceanScene = styled.section`
@@ -549,6 +581,8 @@ export function EditorialHome() {
   const titleY = useTransform(scrollYProgress, [0, 0.24], [0, -18]);
   const artworkY = useTransform(scrollYProgress, [0, 0.24], [0, 28]);
   const noteY = useTransform(scrollYProgress, [0, 0.18], [16, 0]);
+  const velouraY = useTransform(scrollYProgress, [0.42, 0.72], [34, 0]);
+  const velouraScale = useTransform(scrollYProgress, [0.42, 0.72], [.97, 1]);
 
   return (
     <Page>
@@ -561,6 +595,7 @@ export function EditorialHome() {
       <Hero aria-label="Introduction">
         <Inner>
           <HeroGrid>
+            <HeroEdition aria-hidden="true">01</HeroEdition>
             <motion.div style={prefersReducedMotion ? undefined : { y: titleY }}>
               <Eyebrow>01 / Opening — Meghana Padmavathi</Eyebrow>
               <HeroTitle><span>I wasn&apos;t hired.</span><span>She posted it anyway.</span></HeroTitle>
@@ -576,6 +611,7 @@ export function EditorialHome() {
                 />
                 <HeroStamp>Kundaroma / Kadal / 2026</HeroStamp>
                 <HeroRule />
+                <HeroCaption>Unsolicited design / posted by the brand</HeroCaption>
               </Proof>
             </motion.div>
           </HeroGrid>
@@ -638,15 +674,35 @@ export function EditorialHome() {
         </OceanOverlay>
       </OceanScene>
 
-      <Scene $tone="rose">
+      <VelouraScene>
         <Inner>
-          <Eyebrow>04 / Campaign world — Concept</Eyebrow>
-          <Campaign>
-            <CampaignBlock><Index>Veloura / Concept — Not launched</Index><h3>Confidence under pressure.</h3><Index>Luxury haircare / campaign direction</Index></CampaignBlock>
-            <div><Huge>Built to be seen.</Huge><Body style={{ marginTop: 34, color: "#59333a" }}>A self-initiated luxury haircare brand built from positioning to public-facing campaign. Conceptual work, clearly labeled.</Body><div style={{ marginTop: 34 }}><ArrowLink href="/work/veloura">Open Veloura <ArrowUpRight size={16} /></ArrowLink></div></div>
-          </Campaign>
+          <VelouraTopline>
+            <Eyebrow style={{ color: "#b9c9b7", margin: 0 }}>04 / Brand world — Veloura</Eyebrow>
+            <ConceptFlag>Concept — Not launched</ConceptFlag>
+          </VelouraTopline>
+          <motion.div style={prefersReducedMotion ? undefined : { y: velouraY, scale: velouraScale }}>
+            <VelouraIntro>
+              <VelouraMark>VELOURA</VelouraMark>
+              <ClaimNote>Luxury haircare / self-initiated campaign direction / 2026</ClaimNote>
+            </VelouraIntro>
+            <VelouraIntro>
+              <VelouraClaim>Confidence under pressure.</VelouraClaim>
+              <ClaimNote>Real hair exposed outdoors for five days. The claim becomes the test.</ClaimNote>
+            </VelouraIntro>
+            <ExposureField>
+              <ExposureHeading>02 / The mechanic — exposure study</ExposureHeading>
+              <DayField aria-label="Five-day outdoor exposure study">
+                {[1, 2, 3, 4, 5].map((day, index) => <Day key={day} $index={index}>DAY {String(day).padStart(2, "0")}</Day>)}
+              </DayField>
+              <QRDevice aria-label="QR code campaign mechanic, concept device" />
+            </ExposureField>
+            <CampaignFooter>
+              <Body style={{ color: "rgba(233,224,209,.72)" }}>A billboard mechanic designed to make the product claim public, measurable, and impossible to ignore. The QR code invites the audience into the test.</Body>
+              <ArrowLink href="/work/veloura" style={{ color: "#e9e0d1" }}>Open the concept <ArrowUpRight size={16} /></ArrowLink>
+            </CampaignFooter>
+          </motion.div>
         </Inner>
-      </Scene>
+      </VelouraScene>
 
       <Scene>
         <Inner>
