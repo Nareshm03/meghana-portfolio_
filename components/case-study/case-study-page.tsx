@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, Circle } from "lucide-react";
 import styled from "styled-components";
 import type { CaseStudyDetail } from "@/content/case-studies/kundaroma";
@@ -74,6 +75,14 @@ const Visual = styled.div<{ $concept: boolean }>`
   @media (max-width: 700px) { min-height: 300px; margin-top: 70px; }
 `;
 
+const VisualImage = styled(Image)`
+  width: min(100%, 760px);
+  height: auto;
+  max-height: 760px;
+  object-fit: contain;
+  object-position: left bottom;
+`;
+
 const Outcome = styled.section`
   max-width: 900px;
   margin: 170px auto 0;
@@ -108,8 +117,16 @@ export function CaseStudyPage({ study }: { study: CaseStudyDetail }) {
         <Index>01 / The story</Index>
         <Copy>{study.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</Copy>
       </Spread>
-      <Visual $concept={!study.isVerifiedEvidence} role="img" aria-label={`${study.title} visual placeholder`}>
-        <Index>{study.isVerifiedEvidence ? "Verified proof / source image pending" : "Concept visual / not launched"}</Index>
+      <Visual $concept={!study.isVerifiedEvidence} role="img" aria-label={`${study.title} visual`}>
+        {study.isVerifiedEvidence ? (
+          <VisualImage
+            src="/kundaroma/kadal-editorial.jpeg"
+            alt="Kundaroma Kadal fragrance creative with navy perfume bottle and gold vertical typography"
+            width={600}
+            height={900}
+          />
+        ) : null}
+        <Index>{study.isVerifiedEvidence ? "Verified proof / Kundaroma Instagram creative" : "Concept visual / not launched"}</Index>
       </Visual>
       <Outcome>
         <Index><Circle size={10} fill="currentColor" aria-hidden="true" /> Outcome</Index>

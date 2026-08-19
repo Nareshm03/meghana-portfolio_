@@ -3,8 +3,8 @@ name: Editorial asset boundary
 description: Truthful handling of missing portfolio imagery in the editorial redesign.
 ---
 
-The portfolio should never invent client proof or imply that a conceptual campaign launched. When approved source imagery is unavailable, use a visually integrated placeholder with explicit wording and preserve factual captions and concept labels.
+The portfolio should never invent client proof or imply that a conceptual campaign launched. The approved Kundaroma creatives are now available and should be used as authentic editorial evidence; preserve factual captions and concept labels.
 
-**Why:** The imported project contains no image assets, while Kundaroma proof and Veloura campaign visuals are central to the story. Fabricating either would undermine the portfolio's credibility.
+**Why:** Kundaroma proof and Veloura campaign visuals are central to the story. Fabricating either or implying an unlaunched concept is real would undermine the portfolio's credibility.
 
-**How to apply:** When real files are added, replace the labeled visual plates in the homepage and case-study view without changing the factual status language.
+**How to apply:** Use the approved Kundaroma files for the feature and case-study scenes. Keep Veloura's “Concept — Not Launched” status unchanged until real approved concept visuals are supplied.

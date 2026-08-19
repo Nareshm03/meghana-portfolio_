@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import styled, { css } from "styled-components";
 import { ArrowUpRight, Mail, MoveDown } from "lucide-react";
 import { contactContent } from "@/content/contact";
@@ -155,6 +154,37 @@ const Proof = styled.div`
     font: 400 0.7rem/1.5 ui-monospace, monospace;
   }
   @media (max-width: 700px) { min-height: 230px; max-width: 290px; margin: 48px 20px 0 auto; }
+`;
+
+const HeroArtwork = styled(Image)`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`;
+
+const OceanScene = styled.section`
+  position: relative;
+  min-height: min(850px, 90vh);
+  padding: 8vw 5vw;
+  overflow: hidden;
+  background: #7bd6d2;
+  color: #123d43;
+  img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+`;
+
+const OceanOverlay = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1240px;
+  margin: auto;
+  pointer-events: none;
+  h2 { max-width: 500px; margin: 0; font: 400 clamp(4rem, 10vw, 10rem)/.8 Georgia, serif; letter-spacing: -.08em; }
 `;
 
 const HeroNote = styled.div`
@@ -345,7 +375,15 @@ export function EditorialHome() {
               <Eyebrow>01 / Opening — Meghana Padmavathi</Eyebrow>
               <HeroTitle><span>I wasn&apos;t hired.</span><span>She posted it anyway.</span></HeroTitle>
             </div>
-            <Proof role="img" aria-label="Kundaroma proof image placeholder" />
+            <Proof>
+              <HeroArtwork
+                src="/kundaroma/kadal-editorial.jpeg"
+                alt="Kundaroma Kadal fragrance creative with navy perfume bottle and gold vertical typography"
+                width={600}
+                height={900}
+                priority
+              />
+            </Proof>
           </HeroGrid>
           <HeroNote>
             <Body>A second-year AI/ML student who also designs brand strategy and campaigns.</Body>
@@ -368,7 +406,15 @@ export function EditorialHome() {
         <Inner>
           <Eyebrow>03 / Feature story — Real client</Eyebrow>
           <Feature>
-            <FeatureVisual><VisualLabel>01<br />Kundaroma<br /><br />Unsolicited design<br />posted by the brand</VisualLabel></FeatureVisual>
+            <FeatureVisual>
+              <HeroArtwork
+                src="/kundaroma/kadal-editorial.jpeg"
+                alt="Kundaroma Kadal fragrance creative with navy perfume bottle and gold vertical typography"
+                width={600}
+                height={900}
+              />
+              <VisualLabel>01<br />Kundaroma<br /><br />Unsolicited design<br />posted by the brand</VisualLabel>
+            </FeatureVisual>
             <FeatureCopy>
               <h2>{featuredCaseStudies[0]?.title}</h2>
               <p>{featuredCaseStudies[0]?.teaser}</p>
@@ -382,6 +428,19 @@ export function EditorialHome() {
           </StoryGrid>
         </Inner>
       </Scene>
+
+      <OceanScene aria-label="Kundaroma ocean creative">
+        <Image
+          src="/kundaroma/kadal-ocean.jpeg"
+          alt="Kundaroma Kadal fragrance creative framed over turquoise ocean water"
+          width={900}
+          height={1200}
+        />
+        <OceanOverlay>
+          <Eyebrow style={{ color: "#123d43" }}>04 / The work</Eyebrow>
+          <h2>As deep as the ocean.</h2>
+        </OceanOverlay>
+      </OceanScene>
 
       <Scene $tone="rose">
         <Inner>

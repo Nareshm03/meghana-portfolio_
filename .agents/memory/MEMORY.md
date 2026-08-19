@@ -1,2 +1,2 @@
-- [Editorial asset boundary](editorial-asset-boundary.md) — keep proof imagery factual and labeled until approved real assets are available.
+- [Editorial asset boundary](editorial-asset-boundary.md) — use the approved Kundaroma creatives as authentic editorial evidence; keep concept work clearly labeled.
 - [Scroll runtime](scroll-runtime.md) — native scrolling is the stable fallback when the imported Lenis wrapper causes browser hook errors.
