@@ -306,25 +306,162 @@ const Beat = styled.div`
   @media (max-width: 800px) { &:nth-child(2) { border-right: 0; } }
 `;
 
-const Campaign = styled.div`
+const VelouraScene = styled(Scene)`
+  overflow: hidden;
+  background: #182827;
+  color: #e9e0d1;
+  padding-top: clamp(120px, 15vw, 210px);
+  padding-bottom: clamp(120px, 16vw, 220px);
+`;
+
+const VelouraTopline = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(233,224,209,.35);
+  color: #b9c9b7;
+  @media (max-width: 700px) { gap: 24px; align-items: start; }
+`;
+
+const VelouraMark = styled.h2`
+  margin: 0;
+  font: 400 clamp(4.5rem, 14vw, 13rem)/.75 Georgia, serif;
+  letter-spacing: -.1em;
+  color: #e9e0d1;
+`;
+
+const ConceptFlag = styled.div`
+  position: relative;
+  z-index: 2;
+  max-width: 170px;
+  padding: 10px 12px;
+  border: 1px solid #d09b83;
+  color: #edb79e;
+  font: 500 .64rem/1.35 ui-monospace, monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  @media (max-width: 700px) { max-width: 145px; }
+`;
+
+const VelouraIntro = styled.div`
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr .7fr;
-  gap: 10vw;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 8vw;
   align-items: end;
+  margin-top: clamp(58px, 9vw, 120px);
   @media (max-width: 700px) { display: block; }
 `;
 
-const CampaignBlock = styled.div`
-  min-height: 530px;
-  padding: 28px;
+const VelouraClaim = styled.h3`
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0;
+  color: #edb79e;
+  font: 400 clamp(5rem, 12vw, 12rem)/.76 Georgia, serif;
+  letter-spacing: -.1em;
+`;
+
+const ClaimNote = styled.p`
+  max-width: 250px;
+  margin: 0 0 10px auto;
+  color: rgba(233,224,209,.72);
+  font: 500 .7rem/1.55 ui-monospace, monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  @media (max-width: 700px) { margin: 32px 0 0; }
+`;
+
+const ExposureField = styled.div`
+  position: relative;
+  min-height: 410px;
+  margin-top: clamp(80px, 12vw, 170px);
+  border-top: 1px solid rgba(233,224,209,.35);
+  border-bottom: 1px solid rgba(233,224,209,.35);
+  background:
+    radial-gradient(ellipse at 74% 48%, rgba(208,155,131,.5), transparent 28%),
+    linear-gradient(115deg, transparent 0 56%, rgba(73,115,99,.55) 56% 57%, transparent 57%),
+    linear-gradient(165deg, #253a35 0 52%, #182827 52%);
+  overflow: hidden;
+  @media (max-width: 700px) { min-height: 460px; }
+`;
+
+const ExposureHeading = styled.div`
+  position: absolute;
+  top: 22px;
+  left: 0;
+  color: #b9c9b7;
+  font: 500 .65rem/1 ui-monospace, monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+`;
+
+const DayField = styled.div`
+  position: absolute;
+  inset: 58px 0 28px;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  background: #f3d5cd;
-  color: #59333a;
-  border-radius: 50% 50% 0 0;
-  transform: rotate(2deg);
-  h3 { max-width: 600px; margin: 40px 0 0; font: 400 clamp(4rem, 8vw, 8rem)/.8 Georgia, serif; letter-spacing: -.08em; }
+  align-items: center;
+  gap: 14px;
+  @media (max-width: 700px) {
+    inset: 68px 0 28px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: stretch;
+  }
+`;
+
+const Day = styled.span<{ $index: number }>`
+  display: block;
+  color: ${({ $index }) => ($index === 2 ? "#edb79e" : "rgba(233,224,209,.84)")};
+  font: 400 clamp(2.7rem, ${({ $index }) => 4 + $index * 1.5}vw, 7rem)/.8 Georgia, serif;
+  letter-spacing: -.09em;
+  transform: translateY(${({ $index }) => ($index % 2 ? "34px" : "-20px")}) rotate(${({ $index }) => ($index - 2) * 2}deg);
+  @media (max-width: 700px) {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: clamp(2.1rem, 10vw, 3.4rem);
+  }
+`;
+
+const QRDevice = styled.div`
+  position: absolute;
+  right: 6vw;
+  bottom: 18px;
+  width: 112px;
+  height: 112px;
+  padding: 10px;
+  background: #e9e0d1;
+  border: 8px solid #e9e0d1;
+  color: #182827;
+  transform: rotate(-7deg);
+  box-shadow: 8px 9px 0 rgba(0,0,0,.16);
+  background-image:
+    linear-gradient(90deg, #182827 10%, transparent 10% 22%, #182827 22% 34%, transparent 34% 47%, #182827 47% 61%, transparent 61% 75%, #182827 75% 89%, transparent 89%),
+    linear-gradient(#182827 10%, transparent 10% 24%, #182827 24% 38%, transparent 38% 52%, #182827 52% 66%, transparent 66% 80%, #182827 80%);
+  background-size: 100% 100%;
+  &::after {
+    content: "SCAN / CONCEPT";
+    position: absolute;
+    top: calc(100% + 12px);
+    right: -3px;
+    color: #edb79e;
+    font: 500 .58rem/1 ui-monospace, monospace;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
+  @media (max-width: 700px) { right: 3vw; width: 92px; height: 92px; }
+`;
+
+const CampaignFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-top: 100px;
+  @media (max-width: 700px) { display: block; }
 `;
 
 const Archive = styled.div`
