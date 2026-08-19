@@ -72,26 +72,32 @@ const Inner = styled.div`
 `;
 
 const Eyebrow = styled.p`
-  margin: 0 0 24px;
+  margin: 0 0 30px;
   color: #6e6459;
-  font: 500 0.68rem/1.4 ui-monospace, monospace;
-  letter-spacing: 0.11em;
+  font: 500 0.62rem/1.5 ui-monospace, monospace;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 `;
 
-const Huge = styled.h2`
-  max-width: 980px;
+const Huge = styled.h2<{ $gesture?: "position" | "archive" | "range" }>`
+  max-width: ${({ $gesture }) => ($gesture === "archive" ? "720px" : "980px")};
   margin: 0;
-  font: 400 clamp(3.2rem, 9vw, 9.5rem)/0.87 Georgia, serif;
-  letter-spacing: -0.075em;
+  font: 400 ${({ $gesture }) => $gesture === "position"
+    ? "clamp(3.5rem, 8vw, 8.5rem)"
+    : $gesture === "range"
+      ? "clamp(3rem, 6.8vw, 7.2rem)"
+      : "clamp(2.8rem, 6vw, 6.6rem)"}/.87 Georgia, serif;
+  letter-spacing: ${({ $gesture }) => ($gesture === "archive" ? "-0.06em" : "-0.075em")};
+  text-wrap: balance;
 `;
 
 const Body = styled.p`
-  max-width: 480px;
+  max-width: 33ch;
   margin: 0;
   color: #6e6459;
   font-size: clamp(1rem, 1.4vw, 1.2rem);
-  line-height: 1.55;
+  line-height: 1.6;
+  letter-spacing: -0.012em;
 `;
 
 const ArrowLink = styled(Link)`
@@ -140,10 +146,11 @@ const HeroEdition = styled.span`
 const HeroTitle = styled.h1`
   position: relative;
   z-index: 2;
-  max-width: 1100px;
+  max-width: 980px;
   margin: 0;
-  font: 400 clamp(4rem, 11.8vw, 11rem)/0.77 Georgia, serif;
-  letter-spacing: -0.095em;
+  font: 400 clamp(4rem, 11.8vw, 11rem)/0.74 Georgia, serif;
+  letter-spacing: -0.1em;
+  text-wrap: balance;
   span { display: block; }
   span:first-child { margin-left: clamp(0px, 3vw, 42px); }
   span:last-child { margin-left: clamp(34px, 13vw, 180px); }
@@ -263,7 +270,7 @@ const HeroNote = styled.div`
   justify-content: space-between;
   align-items: end;
   margin-top: -18px;
-  padding-top: 26px;
+  padding-top: 30px;
   border-top: 1px solid rgba(36,31,26,.25);
   gap: 32px;
   @media (max-width: 700px) { display: block; margin-top: 48px; }
@@ -316,8 +323,20 @@ const VisualLabel = styled.div`
 `;
 
 const FeatureCopy = styled.div`
-  h2 { margin: 0 0 28px; font: 400 clamp(4rem, 9vw, 8.5rem)/.82 Georgia, serif; letter-spacing: -.08em; }
-  p { max-width: 440px; margin: 0 0 36px; font-size: 1.15rem; line-height: 1.55; }
+  h2 {
+    max-width: 9ch;
+    margin: 0 0 34px;
+    font: 400 clamp(3.5rem, 7.5vw, 7.8rem)/.78 Georgia, serif;
+    letter-spacing: -.085em;
+    text-wrap: balance;
+  }
+  p {
+    max-width: 34ch;
+    margin: 0 0 40px;
+    font-size: 1.08rem;
+    line-height: 1.62;
+    letter-spacing: -.012em;
+  }
 `;
 
 const StoryGrid = styled.div`
@@ -334,8 +353,8 @@ const Beat = styled.div`
   padding: 22px 16px 20px 0;
   border-right: 1px solid currentColor;
   &:last-child { border-right: 0; }
-  h3 { margin: 45px 0 12px; font: 400 2rem/.95 Georgia, serif; letter-spacing: -.05em; }
-  p { margin: 0; font-size: .85rem; line-height: 1.5; opacity: .7; }
+  h3 { margin: 52px 0 14px; font: 400 clamp(1.7rem, 2.6vw, 2.5rem)/.9 Georgia, serif; letter-spacing: -.06em; text-wrap: balance; }
+  p { max-width: 18ch; margin: 0; font-size: .78rem; line-height: 1.55; letter-spacing: .005em; opacity: .7; }
   @media (max-width: 800px) { &:nth-child(2) { border-right: 0; } }
 `;
 
@@ -360,7 +379,8 @@ const VelouraTopline = styled.div`
 const VelouraMark = styled.h2`
   margin: 0;
   font: 400 clamp(4.5rem, 14vw, 13rem)/.75 Georgia, serif;
-  letter-spacing: -.1em;
+  letter-spacing: -.12em;
+  text-wrap: nowrap;
   color: #e9e0d1;
 `;
 
@@ -390,19 +410,20 @@ const VelouraIntro = styled.div`
 const VelouraClaim = styled.h3`
   position: relative;
   z-index: 1;
-  max-width: 900px;
+  max-width: 8ch;
   margin: 0;
   color: #edb79e;
   font: 400 clamp(5rem, 12vw, 12rem)/.76 Georgia, serif;
   letter-spacing: -.1em;
+  text-wrap: balance;
 `;
 
 const ClaimNote = styled.p`
-  max-width: 250px;
+  max-width: 25ch;
   margin: 0 0 10px auto;
   color: rgba(233,224,209,.72);
-  font: 500 .7rem/1.55 ui-monospace, monospace;
-  letter-spacing: .05em;
+  font: 500 .62rem/1.65 ui-monospace, monospace;
+  letter-spacing: .075em;
   text-transform: uppercase;
   @media (max-width: 700px) { margin: 32px 0 0; }
 `;
@@ -557,6 +578,7 @@ const ArchivePlateTitle = styled.span`
   max-width: 220px;
   font: 400 clamp(2rem, 4vw, 4rem)/.85 Georgia, serif;
   letter-spacing: -.08em;
+  text-wrap: balance;
 `;
 
 const ArchivePlateNote = styled.span`
@@ -595,8 +617,9 @@ const ArchiveRow = styled.button<{ $active: boolean }>`
   &:hover small, &:focus-visible small, &[data-active="true"] small { opacity: 1; }
   strong {
     display: block;
-    font: 400 clamp(1.8rem, 3.5vw, 3.6rem)/.9 Georgia, serif;
-    letter-spacing: -.05em;
+    font: 400 clamp(1.7rem, 3.2vw, 3.35rem)/.88 Georgia, serif;
+    letter-spacing: -.06em;
+    text-wrap: balance;
     transition: transform 280ms cubic-bezier(.16,1,.3,1);
   }
   small {
@@ -625,8 +648,8 @@ const TechItem = styled.article`
   padding-top: 22px;
   border-top: 1px solid rgba(247,244,239,.35);
   & + & { margin-top: 90px; }
-  h3 { margin: 38px 0 18px; font: 400 clamp(2.8rem, 5vw, 5.5rem)/.85 Georgia, serif; letter-spacing: -.07em; }
-  p { max-width: 420px; color: rgba(247,244,239,.7); line-height: 1.55; }
+  h3 { max-width: 10ch; margin: 38px 0 18px; font: 400 clamp(2.6rem, 4.5vw, 5rem)/.84 Georgia, serif; letter-spacing: -.075em; text-wrap: balance; }
+  p { max-width: 34ch; color: rgba(247,244,239,.7); line-height: 1.62; letter-spacing: -.01em; }
   a { display: inline-flex; margin-top: 22px; color: inherit; }
 `;
 
@@ -640,10 +663,11 @@ const NotebookVisual = styled.div<{ $alt?: boolean }>`
 `;
 
 const Quote = styled.blockquote`
-  max-width: 900px;
+  max-width: 780px;
   margin: 0;
-  font: 400 clamp(3rem, 7vw, 7.2rem)/.9 Georgia, serif;
-  letter-spacing: -.075em;
+  font: 400 clamp(2.7rem, 6.2vw, 6.5rem)/.9 Georgia, serif;
+  letter-spacing: -.08em;
+  text-wrap: balance;
   p { margin: 0; }
   footer { margin-top: 36px; font: 500 .68rem ui-monospace, monospace; letter-spacing: .1em; text-transform: uppercase; opacity: .65; }
 `;
@@ -653,10 +677,10 @@ const Credits = styled.div`
   grid-template-columns: 1fr 1.4fr;
   gap: 10vw;
   @media (max-width: 700px) { display: block; }
-  h2 { margin: 0; font: 400 clamp(3rem, 7vw, 7rem)/.85 Georgia, serif; letter-spacing: -.08em; }
+  h2 { max-width: 8ch; margin: 0; font: 400 clamp(3rem, 6vw, 6.2rem)/.84 Georgia, serif; letter-spacing: -.085em; text-wrap: balance; }
   dl { margin: 0; }
   dt { margin-top: 20px; font: 500 .65rem ui-monospace, monospace; letter-spacing: .09em; text-transform: uppercase; color: #6e6459; }
-  dd { margin: 7px 0 0; font-size: 1.1rem; line-height: 1.5; }
+  dd { max-width: 31ch; margin: 7px 0 0; font-size: 1.02rem; line-height: 1.58; letter-spacing: -.01em; }
 `;
 
 const CreditsList = styled.dl`
@@ -669,7 +693,7 @@ const Contact = styled(Scene)`
   align-items: end;
   background: #241f1a;
   color: #f7f4ef;
-  h2 { max-width: 900px; margin: 0 0 55px; font: 400 clamp(4.5rem, 12vw, 12rem)/.78 Georgia, serif; letter-spacing: -.09em; }
+  h2 { max-width: 9ch; margin: 0 0 55px; font: 400 clamp(4.2rem, 11vw, 11rem)/.76 Georgia, serif; letter-spacing: -.1em; text-wrap: balance; }
   a { color: inherit; }
 `;
 
