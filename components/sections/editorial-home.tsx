@@ -1,19 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import styled, { css } from "styled-components";
-import { ArrowDownRight, ArrowUpRight, Mail, MoveDown } from "lucide-react";
+import { ArrowUpRight, Mail, MoveDown } from "lucide-react";
 import { contactContent } from "@/content/contact";
 import { experienceEntries } from "@/content/experience";
 import { featuredCaseStudies, condensedWork } from "@/content/featured-work";
 import { skillGroups } from "@/content/skills";
 import { technicalProjects } from "@/content/technical-projects";
-
-const reveal = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
-};
 
 const Page = styled.main`
   overflow: hidden;
@@ -63,10 +57,10 @@ const NavLinks = styled.div`
 const Scene = styled.section<{ $tone?: "cream" | "ink" | "rose" | "blue" | "paper" }>`
   position: relative;
   padding: clamp(96px, 13vw, 190px) 5vw;
-  ${({ $tone, theme }) => $tone === "ink" && css`background: ${theme.colors.textPrimary}; color: ${theme.colors.background};`}
-  ${({ $tone, theme }) => $tone === "rose" && css`background: #d7a3a0; color: #2d1719;`}
-  ${({ $tone, theme }) => $tone === "blue" && css`background: #1d3652; color: #f7f4ef;`}
-  ${({ $tone, theme }) => $tone === "paper" && css`background: #e8e1d5;`}
+  ${({ $tone }) => $tone === "ink" && css`background: #241f1a; color: #f7f4ef;`}
+  ${({ $tone }) => $tone === "rose" && css`background: #d7a3a0; color: #2d1719;`}
+  ${({ $tone }) => $tone === "blue" && css`background: #1d3652; color: #f7f4ef;`}
+  ${({ $tone }) => $tone === "paper" && css`background: #e8e1d5;`}
 `;
 
 const Inner = styled.div`
@@ -321,6 +315,10 @@ const Credits = styled.div`
   dd { margin: 7px 0 0; font-size: 1.1rem; line-height: 1.5; }
 `;
 
+const CreditsList = styled.dl`
+  margin: 0;
+`;
+
 const Contact = styled(Scene)`
   min-height: 650px;
   display: flex;
@@ -431,8 +429,10 @@ export function EditorialHome() {
           <Credits>
             <div><Eyebrow>08 / Credits</Eyebrow><h2>What I&apos;m making room for.</h2></div>
             <div>
-              {experienceEntries.map((entry) => <div key={entry.org}><dt>{entry.org} {entry.ongoing ? " / ongoing" : ""}</dt><dd>{entry.role} — {entry.description}</dd></div>)}
-              <dl>{skillGroups.map((group) => <div key={group.category}><dt>{group.category}</dt><dd>{group.items}</dd></div>)}</dl>
+              <CreditsList>
+                {experienceEntries.map((entry) => <div key={entry.org}><dt>{entry.org} {entry.ongoing ? " / ongoing" : ""}</dt><dd>{entry.role} — {entry.description}</dd></div>)}
+              </CreditsList>
+              <CreditsList>{skillGroups.map((group) => <div key={group.category}><dt>{group.category}</dt><dd>{group.items}</dd></div>)}</CreditsList>
             </div>
           </Credits>
         </Inner>

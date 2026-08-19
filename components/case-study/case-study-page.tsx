@@ -1,75 +1,121 @@
-import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import type { CaseStudyDetail } from "@/content/case-studies/kundaroma";
-import { ProofFrame } from "@/components/case-study/proof-frame";
+"use client";
 
-/**
- * The reusable Case Study Template — locked spec: "The Report, Annotated."
- * Back link → title → fact-strip → body (constraint/overview merged) →
- * proof image → outcome → (reflection, only if real — omitted for both
- * current case studies, per the truth policy) → next-project link.
- *
- * isVerifiedEvidence controls the image treatment: Kundaroma gets the
- * accent-framed ProofFrame; Veloura gets a plain, unframed placeholder —
- * the frame's presence is itself part of how this site signals real vs.
- * concept, so it must never appear on unverified visuals.
- */
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, Circle } from "lucide-react";
+import styled from "styled-components";
+import type { CaseStudyDetail } from "@/content/case-studies/kundaroma";
+
+const Article = styled.article`
+  min-height: 100vh;
+  padding: 34px 5vw 120px;
+  background: ${({ theme }) => theme.colors.background};
+`;
+
+const Header = styled.header`
+  max-width: 1240px;
+  margin: auto;
+`;
+
+const Back = styled(Link)`
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.textSecondary};
+  font: 500 .68rem ${({ theme }) => theme.fonts.mono};
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+`;
+
+const Title = styled.h1`
+  max-width: 1000px;
+  margin: 130px 0 28px;
+  font: 400 clamp(5rem, 15vw, 15rem)/.78 ${({ theme }) => theme.fonts.display};
+  letter-spacing: -.1em;
+`;
+
+const Fact = styled.p`
+  margin: 0;
+  font: 500 .7rem ${({ theme }) => theme.fonts.mono};
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: ${({ theme }) => theme.colors.textSecondary};
+`;
+
+const Spread = styled.div`
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 10vw;
+  max-width: 1100px;
+  margin: 150px auto 0;
+  @media (max-width: 700px) { display: block; margin-top: 90px; }
+`;
+
+const Index = styled.div`
+  font: 500 .68rem ${({ theme }) => theme.fonts.mono};
+  letter-spacing: .1em;
+  color: ${({ theme }) => theme.colors.textSecondary};
+`;
+
+const Copy = styled.div`
+  p { max-width: 610px; margin: 0 0 30px; font: 400 clamp(1.25rem, 2.2vw, 2rem)/1.35 ${({ theme }) => theme.fonts.display}; }
+`;
+
+const Visual = styled.div<{ $concept: boolean }>`
+  min-height: 440px;
+  margin-top: 100px;
+  padding: 28px;
+  display: flex;
+  align-items: end;
+  background: ${({ $concept }) => $concept ? "#e1c0ba" : "#bb7770"};
+  color: ${({ $concept }) => $concept ? "#58343a" : "#f7f4ef"};
+  ${({ $concept }) => $concept && "border-radius: 50% 50% 0 0;"}
+  transform: rotate(-2deg);
+  @media (max-width: 700px) { min-height: 300px; margin-top: 70px; }
+`;
+
+const Outcome = styled.section`
+  max-width: 900px;
+  margin: 170px auto 0;
+  padding-top: 28px;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  h2 { max-width: 760px; margin: 55px 0 0; font: 400 clamp(3rem, 7vw, 7rem)/.86 ${({ theme }) => theme.fonts.display}; letter-spacing: -.08em; }
+`;
+
+const Next = styled(Link)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 150px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  color: inherit;
+  font: 400 clamp(2rem, 4vw, 4.5rem)/1 ${({ theme }) => theme.fonts.display};
+  letter-spacing: -.06em;
+  text-decoration: none;
+`;
+
 export function CaseStudyPage({ study }: { study: CaseStudyDetail }) {
   return (
-    <article className="mx-auto max-w-container px-space-3 py-space-7 md:px-space-6">
-      <Link
-        href="/#work"
-        className="inline-flex items-center gap-2 text-caption text-text-secondary transition-colors duration-fast hover:text-accent"
-      >
-        <ArrowLeft size={14} aria-hidden="true" />
-        Back to work
-      </Link>
-
-      <h1 className="mt-space-4 font-display text-display-case-title font-medium text-text-primary md:text-[2.5rem]">
-        {study.title}
-      </h1>
-      <p className="mt-space-1 text-label-eyebrow uppercase tracking-wide text-text-secondary">
-        {study.factStrip}
-      </p>
-
-      <div className="mt-space-6 max-w-text space-y-space-3 text-body text-text-primary">
-        {study.body.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
-      </div>
-
-      <div className="mt-space-6">
-        {study.isVerifiedEvidence ? (
-          <ProofFrame
-            imageAlt={`Proof image for the ${study.title} case study`}
-          />
-        ) : (
-          // Plain, unframed placeholder — no accent border, since this is a
-          // concept visual, not verified evidence. TODO: real Veloura
-          // concept visuals (billboard mockup, brand identity) not yet sourced.
-          <div
-            role="img"
-            aria-label={`Concept visual for the ${study.title} case study — not yet sourced`}
-            className="flex aspect-[4/3] w-[320px] items-center justify-center rounded-md bg-surface text-center text-caption text-text-secondary"
-          >
-            TODO — {study.title} concept
-            <br />
-            visuals not yet sourced
-          </div>
-        )}
-      </div>
-
-      <p className="mt-space-6 max-w-text text-body font-medium text-text-primary">
-        {study.outcome}
-      </p>
-
-      <Link
-        href={`/work/${study.nextSlug}`}
-        className="mt-space-7 inline-flex items-center gap-2 text-body font-medium text-accent transition-colors duration-fast hover:text-accent-hover"
-      >
-        Next: {study.nextTitle}
-        <ArrowRight size={16} aria-hidden="true" />
-      </Link>
-    </article>
+    <Article>
+      <Header>
+        <Back href="/#work"><ArrowLeft size={15} aria-hidden="true" /> Back to work</Back>
+        <Title>{study.title}</Title>
+        <Fact>{study.factStrip}</Fact>
+      </Header>
+      <Spread>
+        <Index>01 / The story</Index>
+        <Copy>{study.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</Copy>
+      </Spread>
+      <Visual $concept={!study.isVerifiedEvidence} role="img" aria-label={`${study.title} visual placeholder`}>
+        <Index>{study.isVerifiedEvidence ? "Verified proof / source image pending" : "Concept visual / not launched"}</Index>
+      </Visual>
+      <Outcome>
+        <Index><Circle size={10} fill="currentColor" aria-hidden="true" /> Outcome</Index>
+        <h2>{study.outcome}</h2>
+      </Outcome>
+      <Next href={`/work/${study.nextSlug}`}>Next: {study.nextTitle}<ArrowRight size={28} /></Next>
+    </Article>
   );
 }
