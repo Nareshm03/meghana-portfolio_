@@ -5,6 +5,7 @@ import Image from "next/image";
 import styled, { css } from "styled-components";
 import { ArrowUpRight, Mail, MoveDown } from "lucide-react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useState } from "react";
 import { contactContent } from "@/content/contact";
 import { experienceEntries } from "@/content/experience";
 import { featuredCaseStudies, condensedWork } from "@/content/featured-work";
@@ -497,23 +498,120 @@ const CampaignFooter = styled.div`
 `;
 
 const Archive = styled.div`
+  position: relative;
   margin-top: 100px;
   border-top: 1px solid currentColor;
 `;
 
-const ArchiveRow = styled.div`
+const ArchivePreview = styled.div`
+  position: absolute;
+  top: 26px;
+  right: 0;
+  width: min(31vw, 370px);
+  height: 310px;
+  overflow: hidden;
+  pointer-events: none;
+  @media (max-width: 700px) {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 230px;
+    margin-bottom: 36px;
+  }
+`;
+
+const ArchivePlate = styled.div<{ $variant: number; $visible: boolean }>`
+  position: absolute;
+  inset: 0;
+  padding: 22px;
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+  transform: ${({ $visible }) => ($visible ? "translateY(0)" : "translateY(14px)")};
+  transition: opacity 280ms ease, transform 380ms cubic-bezier(.16,1,.3,1);
+  background: ${({ $variant }) => [
+    "linear-gradient(135deg, #d8c8a9 0 23%, #8c3f39 23% 24%, #d8c8a9 24% 63%, #202b2d 63%)",
+    "linear-gradient(115deg, #e2b9a4 0 29%, #55343b 29% 57%, #efddc8 57%)",
+    "linear-gradient(150deg, #d9ded5 0 38%, #1e3840 38% 70%, #bf765f 70%)",
+  ][$variant]};
+  color: ${({ $variant }) => ($variant === 1 ? "#55343b" : "#f5eee3")};
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid currentColor;
+    opacity: .55;
+  }
+  &::after {
+    content: ${({ $variant }) => [`"PASSION / 01"`, `"TABLE / 02"`, `"TRAIN / 03"`][$variant]};
+    position: absolute;
+    right: 22px;
+    bottom: 20px;
+    font: 500 .62rem/1 ui-monospace, monospace;
+    letter-spacing: .12em;
+  }
+`;
+
+const ArchivePlateTitle = styled.span`
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: 220px;
+  font: 400 clamp(2rem, 4vw, 4rem)/.85 Georgia, serif;
+  letter-spacing: -.08em;
+`;
+
+const ArchivePlateNote = styled.span`
+  position: absolute;
+  z-index: 1;
+  left: 22px;
+  bottom: 20px;
+  max-width: 140px;
+  font: 500 .62rem/1.4 ui-monospace, monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+`;
+
+const ArchiveRows = styled.div`
+  position: relative;
+  z-index: 1;
+  width: calc(100% - min(33vw, 410px));
+  @media (max-width: 700px) { width: 100%; }
+`;
+
+const ArchiveRow = styled.button<{ $active: boolean }>`
   display: grid;
-  grid-template-columns: 80px 1fr 1fr 120px;
+  grid-template-columns: 70px minmax(0, 1fr) 92px 28px;
+  width: 100%;
   gap: 18px;
   align-items: baseline;
+  appearance: none;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
   padding: 23px 0;
   border-bottom: 1px solid currentColor;
-  font-size: .92rem;
-  transition: padding 250ms ease;
-  &:hover { padding-left: 18px; padding-right: 18px; }
-  strong { font: 400 clamp(1.8rem, 3.5vw, 3.6rem)/.9 Georgia, serif; letter-spacing: -.05em; }
-  small { font: 500 .62rem ui-monospace, monospace; text-transform: uppercase; letter-spacing: .08em; }
-  @media (max-width: 700px) { grid-template-columns: 42px 1fr; small:nth-child(3), small:last-child { grid-column: 2; } }
+  &:hover strong, &:focus-visible strong { transform: translateX(10px); }
+  &:hover small, &:focus-visible small, &[data-active="true"] small { opacity: 1; }
+  strong {
+    display: block;
+    font: 400 clamp(1.8rem, 3.5vw, 3.6rem)/.9 Georgia, serif;
+    letter-spacing: -.05em;
+    transition: transform 280ms cubic-bezier(.16,1,.3,1);
+  }
+  small {
+    opacity: ${({ $active }) => ($active ? 1 : .55)};
+    font: 500 .65rem/1.2 ui-monospace, monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: opacity 220ms ease;
+  }
+  span:last-child { justify-self: end; font-size: 1.2rem; }
+  @media (max-width: 700px) {
+    grid-template-columns: 38px minmax(0, 1fr) 24px;
+    gap: 10px;
+    small:nth-child(3) { display: none; }
+  }
 `;
 
 const Notebook = styled.div`
@@ -576,6 +674,7 @@ const Contact = styled(Scene)`
 `;
 
 export function EditorialHome() {
+  const [activeArchive, setActiveArchive] = useState(0);
   const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const titleY = useTransform(scrollYProgress, [0, 0.24], [0, -18]);
@@ -709,9 +808,33 @@ export function EditorialHome() {
           <Eyebrow>05 / Supporting creative work</Eyebrow>
           <Huge>An archive of trying things on purpose.</Huge>
           <Archive>
-            {[condensedWork, { title: "The Naga Kitchen", tag: "Concept", description: "Unsolicited brand and social media design direction." }, { title: "Golden Gym", tag: "Concept", description: "A local business outreach concept." }].map((item, index) => (
-              <ArchiveRow key={item.title}><small>0{index + 1}</small><strong>{item.title}</strong><small>{item.tag}</small><small>{index === 0 ? "Strategy" : "Brand design"}</small></ArchiveRow>
-            ))}
+            <ArchivePreview aria-hidden="true">
+              {[condensedWork, { title: "The Naga Kitchen", tag: "Concept", description: "Unsolicited brand and social media design direction." }, { title: "Golden Gym", tag: "Concept", description: "A local business outreach concept." }].map((item, index) => (
+                <ArchivePlate key={item.title} $variant={index} $visible={activeArchive === index}>
+                  <ArchivePlateTitle>{item.title}</ArchivePlateTitle>
+                  <ArchivePlateNote>{item.tag} / {index === 0 ? "Strategy" : "Brand design"}</ArchivePlateNote>
+                </ArchivePlate>
+              ))}
+            </ArchivePreview>
+            <ArchiveRows>
+              {[condensedWork, { title: "The Naga Kitchen", tag: "Concept", description: "Unsolicited brand and social media design direction." }, { title: "Golden Gym", tag: "Concept", description: "A local business outreach concept." }].map((item, index) => (
+                <ArchiveRow
+                  key={item.title}
+                  type="button"
+                  $active={activeArchive === index}
+                  data-active={activeArchive === index}
+                  onMouseEnter={() => setActiveArchive(index)}
+                  onFocus={() => setActiveArchive(index)}
+                  onClick={() => setActiveArchive(index)}
+                  aria-label={`Preview ${item.title}`}
+                >
+                  <small>0{index + 1}</small>
+                  <strong>{item.title}</strong>
+                  <small>{item.tag} / {index === 0 ? "Strategy" : "Brand design"}</small>
+                  <span aria-hidden="true">→</span>
+                </ArchiveRow>
+              ))}
+            </ArchiveRows>
           </Archive>
         </Inner>
       </Scene>
